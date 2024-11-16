@@ -19,11 +19,11 @@ const FixtureCard = ({ fixture }) => {
           style={styles.leagueLogo}
         />
         <Text style={styles.leagueName}>
-          {fixture.league.name ?? "Not Available"}
+          {fixture?.league?.name ?? "Not Available"}
         </Text>
       </View>
 
-      <Text style={styles.date}>{fixture.date ?? "Not Available"}</Text>
+      <Text style={styles.date}>{fixture?.date ?? "Not Available"}</Text>
 
       <View style={styles.teamsContainer}>
         <View style={styles.team}>
@@ -32,7 +32,7 @@ const FixtureCard = ({ fixture }) => {
             style={styles.teamLogo}
           />
           <Text style={styles.teamName}>
-            {fixture.homeTeam.name ?? "Not Available"}
+            {fixture?.homeTeam?.name ?? "Not Available"}
           </Text>
         </View>
         <Text style={styles.vs}>vs</Text>
@@ -43,48 +43,50 @@ const FixtureCard = ({ fixture }) => {
             style={styles.teamLogo}
           />
           <Text style={styles.teamName}>
-            {fixture.awayTeam.name ?? "Not Available"}
+            {fixture?.awayTeam?.name ?? "Not Available"}
           </Text>
         </View>
       </View>
 
       <Text style={styles.state}>
-        State: {fixture.state.description ?? "Not Available"} (
+        State: {fixture?.state?.description ?? "Not Available"} (
         {fixture.state.clock ?? "Not Available"} mins)
       </Text>
       <Text style={styles.score}>
-        Score: {fixture.state.score.current ?? "Not available"}
+        Score: {fixture?.state?.score?.current ?? "Not available"}
       </Text>
-      {fixture.state.score.penalties && (
+      {fixture?.state?.score?.penalties && (
         <Text style={styles.penalties}>
-          Penalties: {fixture.state.score.penalties}
+          Penalties: {fixture?.state?.score?.penalties}
         </Text>
       )}
 
-      <View style={styles.section}>
-        <Text style={styles.sectionTitle ?? "Not Available"}>Venue</Text>
-        <Text>Stadium: {fixture.venue.name ?? "Not Available"}</Text>
-        <Text>City: {fixture.venue.city ?? "Not Available"}</Text>
-        <Text>Country: {fixture.venue.country ?? "Not Available"}</Text>
-        <Text>Capacity: {fixture.venue.capacity ?? "Not Available"}</Text>
-      </View>
+      {fixture?.venue && (
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle ?? "Not Available"}>Venue</Text>
+          <Text>Stadium: {fixture?.venue?.name ?? "Not Available"}</Text>
+          <Text>City: {fixture?.venue?.city ?? "Not Available"}</Text>
+          <Text>Country: {fixture?.venue?.country ?? "Not Available"}</Text>
+          <Text>Capacity: {fixture?.venue?.capacity ?? "Not Available"}</Text>
+        </View>
+      )}
 
-      {fixture.forecast && (
+      {fixture?.forecast && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Weather Forecast</Text>
-          <Text>Status: {fixture.forecast.status ?? "Not Available"}</Text>
+          <Text>Status: {fixture?.forecast?.status ?? "Not Available"}</Text>
           <Text>
-            Temperature: {fixture.forecast.temperature ?? "Not Available"}
+            Temperature: {fixture?.forecast?.temperature ?? "Not Available"}
           </Text>
         </View>
       )}
 
-      {fixture.referee && (
+      {fixture?.referee && (
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Referee</Text>
-          <Text>Name: {fixture.referee.name ?? "Not Available"}</Text>
+          <Text>Name: {fixture?.referee?.name ?? "Not Available"}</Text>
           <Text>
-            Nationality: {fixture.referee.nationality ?? "Not Available"}
+            Nationality: {fixture?.referee?.nationality ?? "Not Available"}
           </Text>
         </View>
       )}
@@ -93,8 +95,8 @@ const FixtureCard = ({ fixture }) => {
 };
 
 const FootBallFixtureDetails = ({ route }) => {
-  const { match_id } = route.params;
-  //const match_id = 986165114;
+  //const { match_id } = route.params;
+  const match_id = 986165114;
   const url = `https://sport-highlights-api.p.rapidapi.com/football/matches/${match_id}`;
   const options = {
     method: "GET",
