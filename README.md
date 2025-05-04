@@ -24,12 +24,12 @@ A **React Native Expo** application that provides up-to-date **cricket** and **f
 
 1. **Clone the repo**  
 ```bash
-git clone https://github.com/yourusername/sports-fixtures-app.git
+git clone https://github.com/AahilAshiqAli/Sports-App.git
 ```
 
 2. **Navigate to the project**  
 ```bash
-cd sports-fixtures-app
+cd Sports-App
 ```
 
 3. **Install dependencies**  
